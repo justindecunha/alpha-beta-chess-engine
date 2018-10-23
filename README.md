@@ -9,7 +9,7 @@ This project showcases an AI implementation for chess, although it can also be u
 * Java version 8, 9 or 10 (11 is unsupported)
 
 ### Installation
-The simplest way to get the program up and running is to double-click the [executable JAR file](out/artifacts/JustinDeCuha_ChessAI_jar/JustinDeCunha_ChessAI.jar), or calling it via command line:
+The simplest way to get the program up and running is to double-click the [executable JAR file](https://github.com/justindecunha/alpha-beta-chess-engine/blob/master/out/artifacts/JustinDeCunha_ChessAI_jar/JustinDeCunha_ChessAI.jar), or calling it via command line:
 
 `java -jar JustinDeCunha_ChessAI.jar`
 
