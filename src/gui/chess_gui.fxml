@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<?import javafx.scene.paint.Color?>
+<VBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+   <StackPane>
+      <children>
+          <MenuBar maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
+              <Menu mnemonicParsing="false" text="File">
+                  <MenuItem mnemonicParsing="false" onAction="#showNewGameDialog" text="New Game" />
+                  <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
+              </Menu>
+              <Menu mnemonicParsing="false" text="Preferences">
+                  <Menu mnemonicParsing="false" text="Light Tile Colour">
+                      <MenuItem mnemonicParsing="false">
+                          <graphic>
+                              <ColorPicker fx:id="lightTileColourPicker" onAction="#setTileColour" />
+                          </graphic>
+                      </MenuItem>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Dark Tile Colour">
+                      <MenuItem mnemonicParsing="false">
+                          <graphic>
+                              <ColorPicker fx:id="darkTileColourPicker" onAction="#setTileColour">
+                                  <value>
+                                      <Color red="1.0" />
+                                  </value>
+                              </ColorPicker>
+                          </graphic>
+                      </MenuItem>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Piece Graphic">
+                      <RadioMenuItem mnemonicParsing="false" onAction="#selectStyle" selected="true" text="Standard">
+                     <toggleGroup>
+                              <ToggleGroup fx:id="pieceStyleGroup" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                      <RadioMenuItem mnemonicParsing="false" onAction="#selectStyle" text="Fantasy" toggleGroup="$pieceStyleGroup" />
+                      <RadioMenuItem mnemonicParsing="false" onAction="#selectStyle" text="Modern" toggleGroup="$pieceStyleGroup" />
+                      <RadioMenuItem mnemonicParsing="false" onAction="#selectStyle" text="Cats" toggleGroup="$pieceStyleGroup" />
+                  </Menu>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Options">
+                  <Menu mnemonicParsing="false" text="Search Depth">
+                      <MenuItem mnemonicParsing="false">
+                          <graphic>
+                              <Slider fx:id="depthSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0" />
+                          </graphic>
+                      </MenuItem>
+                  </Menu>
+               <Menu mnemonicParsing="false" text="Number of Threads">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                           <Slider fx:id="threadSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+               </Menu>
+                  <MenuItem mnemonicParsing="false" onAction="#undo" text="Undo" />
+                  <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
+              </Menu>
+          </MenuBar>
+         <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" translateX="280.0" />
+      </children>
+   </StackPane>
+    <GridPane fx:id="gPane" gridLinesVisible="true" maxHeight="800" maxWidth="800" minHeight="800" minWidth="800" prefHeight="800.0" prefWidth="800.0">
+        <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="100.0" />
+
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+        </rowConstraints>
+
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="7" GridPane.rowIndex="0" />
+
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+        <Rectangle fill="BROWN" height="100.0" width="100.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+        <Rectangle fill="WHITE" height="100.0" width="100.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+    </GridPane>
+</VBox>
