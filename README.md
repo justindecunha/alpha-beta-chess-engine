@@ -69,7 +69,7 @@ The alpha-beta enhancement to the minimax algorithm greatly benefits from findin
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](master/LICENSE.md) file for details.
 
 ## Acknowledgements
 
