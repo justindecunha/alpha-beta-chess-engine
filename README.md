@@ -27,17 +27,17 @@ The UI was made using JavaFX, and follows a typical MVC design pattern. The GUI 
 
 ### AI
 
-##### Base
+#### Base
 
 The heart of the AI is an alpha-beta algorithm variant called [negamax](https://en.wikipedia.org/wiki/Negamax), which relies upon the zero-sum property of a two player game, such as chess.
 
-##### Move Ordering Heuristics
+#### Move Ordering Heuristics
 
 The alpha-beta algorithm greatly benefits from finding strong moves earlier in its search. By finding strong moves earlier, the search will prune unnecessary branches more aggressively, vastly reducing the size of the search tree, and hence greatly improving search speeds. For this reason, its worth using some sort of heuristic to ensure strong moves get searched first.
 
 The moves are sorted based on a direct static evaluation function, which is used to estimate which moves are strongest based on piece positions and values. This move sorting improved search speeds of the algorithm by over 200%.
 
-##### Transposition Tables
+#### Transposition Tables
 
 Because a particular board state can be reached through a variety of different move sequences, the search algorithm must repeatedly re-evaluate boards it has already seen, many many times. This can be optimized via dynamic programming. A transposition table is stored in RAM to quickly store and retrieve board evaluation results. Not only did this technique increase search speed by >500%, but it also directly improves engine strength, as it allows low-depth tree nodes to utilize more accurate information computed by high-depth tree nodes, that have already been stored inside the table.
 
