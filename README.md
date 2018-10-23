@@ -1,38 +1,29 @@
-# Chess
+# Alpha Beta Chess Engine
 
-This project showcases an AI implementation for chess. The AI functions using a minimax algorithm as a baseline, with many further improvements added over time to improve its efficiency.
+This project showcases an AI implementation for chess, although it can also be used to play chess against your friends. The AI functions using the [alpha beta pruning algorithm](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning) as a baseline, with many further improvements listed below.
 
-## Usage
+## Getting Started
+### Requirements
 
-#### Basic Controls
+* Windows, Linux, or Mac OS
+* Java version 8, 9 or 10 (11 is unsupported)
 
-Upon launch, the game will request the user for a colour and an opponent type:
+### Installation
+The simplest way to get the program up and running is to double-click the [executable JAR file](out/JustinDeCunha_ChessAI.jar), or calling it via command line:
 
-![new_game_dialog](../../Downloads/alpha-beta-chess-engine-master/gifs/new_game_dialog.gif)
+`java -jar JustinDeCunha_ChessAI.jar`
 
-This new game dialog can subsequently be accessed through the "File" menu item should the user desire to restart the match.
+More advanced users can also compile the program from the sources provided.
 
+## Demo
 
+![demo](gifs/demo.gif)
 
-#### Preferences
-
-Preferences for the user interface can be changed through the 'preferences' menu. Options such as piece style and tile colour can be altered according to the users taste:
-
-![preferences_menu](../../Downloads/alpha-beta-chess-engine-master/gifs/preferences_menu.gif)
-
-
-
-#### Options
-
-Game/engine settings can be tweaked through the 'options' menu. Users can alter the game tree search depth, and number of threads utilized to optimize the engine for their hardware set up. It is recommended to use number of threads equal to the number of cores on the computer. Search depth can be altered to change the engine's difficulty/time taken to generate a move. The options menu also houses an undo button, in case a mistake is made:
-
-![options_menu](../../Downloads/alpha-beta-chess-engine-master/gifs/options_menu.gif)
-
-## Under the Hood
+## Features
 
 ### User Interface
 
-The GUI was built using JavaFX, and follows a typical MVC design pattern. The GUI interacts with a controller, which then modifies the engine's internal board represetation. Piece graphics were taken from the PyChess repository, which can be found [here](https://github.com/pychess/pychess/tree/master/pieces).
+The GUI was built using JavaFX, and follows a typical MVC design pattern. The GUI interacts with a controller, which then modifies the engine's internal board representation.
 
 ### Board Representation
 
@@ -68,16 +59,20 @@ The heart of the AI is a tweaked minimax algorithm with alpha-beta pruning. Impr
 
 ##### Transposition Table
 
-As a particular board state can be reached through a variety of different move sequences, the minimax algorithm for chess repeatedly reevaluates scores for board states it has already seen. This can be optimized via dynammic programming. A hash is computed for each board state the algorithm evalulates, which is stored in the transposition table, along with the score said board state ended up recieving. This significantly reduces the computational load of the minimax algorithm, as it is no longer forced to recompute values to boards it has already seen.
-
-##### Multi-Threading
-
-As the majority of modern computers come with mutiple cores, these can be harnessed to parallelize the search algorithm. As the algorithm has already been tweaked to store results of states it has already evaluated, effective multi-threading can be achieved simply by starting the exact same search twice on two separate threads. When one thread encounters a node the other thread has already solved, its result will be conviniently stored in the transposition table for reuse.
+As a particular board state can be reached through a variety of different move sequences, the minimax algorithm for chess repeatedly reevaluates scores for board states it has already seen. This can be optimized via dynamic programming. A hash is computed for each board state the algorithm evaluates, which is stored in the transposition table, along with the score said board state ended up receiving. This significantly reduces the computational load of the minimax algorithm, as it is no longer forced to recompute values to boards it has already seen.
 
 ##### Move Ordering
 
-The alpha-beta enhancement to the minimax algorithm greatly benefits from finding stronger moves earlier in its search. By finding strong moves early, the search will prune unnessicary branches more aggressively, greatly improving search times. For this reason, its worth using some sort of heuristic to 
+The alpha-beta enhancement to the minimax algorithm greatly benefits from finding stronger moves earlier in its search. By finding strong moves early, the search will prune unnecessary branches more aggressively, greatly improving search times. For this reason, its worth using some sort of heuristic to
 
-## References
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Acknowledgements
 
 The majority of techniques utilized in this chess engine were discovered on the [chess programming wiki](https://chessprogramming.wikispaces.com/).
+
+Piece graphics were taken from the PyChess repository, which can be found [here](https://github.com/pychess/pychess/tree/master/pieces).
