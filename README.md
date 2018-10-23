@@ -9,7 +9,7 @@ This project showcases an AI implementation for chess, although it can also be u
 * Java version 8, 9 or 10 (11 is unsupported)
 
 ### Installation
-The simplest way to get the program up and running is to double-click the [executable JAR file](out/artifacts/JustinDeCunha_ChessAI_jar/JustinDeCunha_ChessAI.jar), or calling it via command line:
+The simplest way to get the program up and running is to double-click the [executable JAR file](out/JustinDeCunha_ChessAI.jar), or calling it via command line:
 
 `java -jar JustinDeCunha_ChessAI.jar`
 
@@ -23,56 +23,30 @@ More advanced users can also compile the program from the sources provided.
 
 ### User Interface
 
-The GUI was built using JavaFX, and follows a typical MVC design pattern. The GUI interacts with a controller, which then modifies the engine's internal board representation.
-
-### Board Representation
-
-The board is internally represented as a single length 64 array of piece squares. In the future, this will be changed to a magic bit-board representation in order to improve the engine's efficiency.
-
-### Board Evaluation
-
-The engine assigns a score to a particular board state using two simple heuristics:
-
-##### Piece Score
-
-Each piece is worth a pre-defined value:
-
-Pawn: 100
-
-Knight: 320
-
-Bishop: 330
-
-Rook: 500
-
-Queen: 900
-
-King: 20,000
-
-##### Position Score
-
-A positional score is assigned to each piece. In general, pawns are encouraged to advance forward, knights & bishops closer to the center are better, and the king should be tucked away in a corner early game, and closer to the center late game. The actual values used can be found in engine.ai.Evalulator.
+The UI was made using JavaFX, and follows a typical MVC design pattern. The GUI interacts with a controller, which then modifies the engine's internal board representation.
 
 ### AI
 
-The heart of the AI is a tweaked minimax algorithm with alpha-beta pruning. Improvements have been incrementally been added over time to improve the efficiency.
+##### Base
 
-##### Transposition Table
+The heart of the AI is an alpha-beta algorithm variant called [negamax](https://en.wikipedia.org/wiki/Negamax), which relies upon the zero-sum property of a two player game, such as chess.
 
-As a particular board state can be reached through a variety of different move sequences, the minimax algorithm for chess repeatedly reevaluates scores for board states it has already seen. This can be optimized via dynamic programming. A hash is computed for each board state the algorithm evaluates, which is stored in the transposition table, along with the score said board state ended up receiving. This significantly reduces the computational load of the minimax algorithm, as it is no longer forced to recompute values to boards it has already seen.
+##### Move Ordering Heuristics
 
-##### Move Ordering
+The alpha-beta algorithm greatly benefits from finding strong moves earlier in its search. By finding strong moves earlier, the search will prune unnecessary branches more aggressively, vastly reducing the size of the search tree, and hence greatly improving search speeds. For this reason, its worth using some sort of heuristic to ensure strong moves get searched first.
 
-The alpha-beta enhancement to the minimax algorithm greatly benefits from finding stronger moves earlier in its search. By finding strong moves early, the search will prune unnecessary branches more aggressively, greatly improving search times. For this reason, its worth using some sort of heuristic to
+The moves are sorted based on a direct static evaluation function, which is used to estimate which moves are strongest based on piece positions and values. This move sorting improved search speeds of the algorithm by over 200%.
 
+##### Transposition Tables
 
+Because a particular board state can be reached through a variety of different move sequences, the search algorithm must repeatedly re-evaluate boards it has already seen, many many times. This can be optimized via dynamic programming. A transposition table is stored in RAM to quickly store and retrieve board evaluation results. Not only did this technique increase search speed by >500%, but it also directly improves engine strength, as it allows low-depth tree nodes to utilize more accurate information computed by high-depth tree nodes, that have already been stored inside the table.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENCE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgements
 
-The majority of techniques utilized in this chess engine were discovered on the [chess programming wiki](https://www.chessprogramming.org/Main_Page).
+The majority of techniques utilized in this chess engine were discovered on the [chess programming wiki](https://chessprogramming.wikispaces.com/).
 
 Piece graphics were taken from the PyChess repository, which can be found [here](https://github.com/pychess/pychess/tree/master/pieces).
