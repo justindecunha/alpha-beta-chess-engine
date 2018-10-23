@@ -47,6 +47,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENCE.md
 
 ## Acknowledgements
 
-The majority of techniques utilized in this chess engine were discovered on the [chess programming wiki](https://chessprogramming.wikispaces.com/).
+The majority of techniques utilized in this chess engine were discovered on the [chess programming wiki](https://www.chessprogramming.org/Main_Page).
 
 Piece graphics were taken from the PyChess repository, which can be found [here](https://github.com/pychess/pychess/tree/master/pieces).
