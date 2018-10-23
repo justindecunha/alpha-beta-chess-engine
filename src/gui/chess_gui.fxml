@@ -13,10 +13,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 
-<?import javafx.scene.paint.Color?>
-<VBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+<VBox xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
    <StackPane>
       <children>
           <MenuBar maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
@@ -62,15 +62,6 @@
                           </graphic>
                       </MenuItem>
                   </Menu>
-               <Menu mnemonicParsing="false" text="Number of Threads">
-                  <items>
-                     <MenuItem mnemonicParsing="false">
-                        <graphic>
-                           <Slider fx:id="threadSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0" />
-                        </graphic>
-                     </MenuItem>
-                  </items>
-               </Menu>
                   <MenuItem mnemonicParsing="false" onAction="#undo" text="Undo" />
                   <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
               </Menu>
